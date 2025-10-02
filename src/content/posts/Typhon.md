@@ -1,8 +1,12 @@
 ---
 title: Typhon-一种pyjail自动化绕过的思路及其粗略实现
-date: 2025-01-28 11:16:48
-tags:
-  - CTF
+published: 2025-10-02
+description: 'Typhon-一种pyjail自动化绕过的思路及其粗略实现'
+image: 'https://avatars.githubusercontent.com/u/108666168?v=4'
+tags: [CTF,WEB安全,pyjail]
+category: 'CTF'
+draft: false 
+lang: ''
 ---
 
 随着CTF题目的发展，越来越多的自动化解题工具诞生，使CTFer能够避开繁琐而固定的解题流程，并将精力花在真正能学到东西，有意义的环节上。
