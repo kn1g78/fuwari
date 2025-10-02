@@ -2,7 +2,7 @@
 title: Typhon-一种pyjail自动化绕过的思路及其粗略实现
 published: 2025-10-02
 description: 'Typhon-一种pyjail自动化绕过的思路及其粗略实现'
-image: 'https://avatars.githubusercontent.com/u/108666168?v=4'
+image: 'https://raw.githubusercontent.com/kn1g78/fuwari/155d68868f72cfd6e77386fae916e72f0b32aef5/src/assets/images/image.png'
 tags: [CTF,WEB安全,pyjail]
 category: 'CTF'
 draft: false 
@@ -113,7 +113,7 @@ exec(input('>> '),{'__builtins__':None})
 
 我们使用`{}`对象为例子：
 
-我们通过一个pyhton object的`__class__`魔术属性可以返回其对应的类。因此，通过`{}.__class__`我们就获取了`<class 'dict'>`。接下来，我们通过一个python class的`__subclasses__()`魔术方法可以获取所有继承自此的类：
+我们通过一个python object的`__class__`魔术属性可以返回其对应的类。因此，通过`{}.__class__`我们就获取了`<class 'dict'>`。接下来，我们通过一个python class的`__subclasses__()`魔术方法可以获取所有继承自此的类：
 
 ![image](https://img2024.cnblogs.com/blog/3392505/202509/3392505-20250920210129852-1229827944.png)
 
@@ -432,3 +432,4 @@ Pyjail中存在一些通过索引寻找对应object的gadgets（如继承链）�
 再次，由于个人实力有限，这只是一个相当简单而粗疏的实现。希望大家多多海涵。
 
 此致。
+
