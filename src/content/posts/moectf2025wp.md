@@ -2,7 +2,7 @@
 title: Moectf2025 Writeup
 published: 2025-10-09
 description: 'Moectf2025全方向题解(pwn&re ak)'
-image: 'https://avatars.githubusercontent.com/u/197273140?s=48&v=4'
+image: 'https://tse3.mm.bing.net/th/id/OIP.WwerDsrl3Jfc3HPI8pyvpgHaHe?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3'
 tags: [CTF,WriteUP]
 category: '网络安全'
 draft: false 
