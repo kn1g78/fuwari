@@ -176,7 +176,7 @@ dHJ5OgogICAgMS8wCmV4Y2VwdCBFeGNlcHRpb24gYXMgZToKICAgIG1hdGNoIGU6CiAgICAgICAgY2Fz
 ```
 ### 2048_master_re
 跟进`byte_47F0C0`拿到密文，xor `0x2a`
-`moectf{Y0u_4re_a_2048_m4st3r!!!!r0erowhu}``
+`moectf{Y0u_4re_a_2048_m4st3r!!!!r0erowhu}`
 
 <a id="Reverse"></a>
 ## Reverse
