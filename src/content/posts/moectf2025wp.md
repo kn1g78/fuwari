@@ -178,6 +178,83 @@ dHJ5OgogICAgMS8wCmV4Y2VwdCBFeGNlcHRpb24gYXMgZToKICAgIG1hdGNoIGU6CiAgICAgICAgY2Fz
 跟进`byte_47F0C0`拿到密文，xor `0x2a`
 `moectf{Y0u_4re_a_2048_m4st3r!!!!r0erowhu}`
 
+### 万里挑一
+写个exp把密码整理出来
+```python
+import re
+import os
+
+def extract_passwords_from_zip(zip_file_path, output_file):
+    """
+    从zip文件的二进制内容中直接提取所有密码
+    
+    Args:
+        zip_file_path: zip文件路径
+        output_file: 输出密码字典文件路径
+    """
+    print(f"正在从 {zip_file_path} 中提取密码...")
+    
+    try:
+        # 以二进制模式读取zip文件
+        with open(zip_file_path, 'rb') as f:
+            zip_content = f.read()
+        
+        # 将二进制内容转换为字符串进行搜索
+        # 使用errors='ignore'忽略无法解码的字符
+        text_content = zip_content.decode('latin-1', errors='ignore')
+        
+        # 使用正则表达式查找所有"The password is:"后面的密码
+        # 密码看起来是16进制字符串，长度可能是16-20个字符
+        pattern = r'The password is:([0-9a-f]{16,20})'
+        passwords = re.findall(pattern, text_content, re.IGNORECASE)
+        
+        # 去重
+        unique_passwords = list(set(passwords))
+        
+        print(f"找到 {len(unique_passwords)} 个唯一密码")
+        
+        # 将密码写入输出文件
+        with open(output_file, 'w', encoding='utf-8') as f:
+            for password in unique_passwords:
+                f.write(password + '\n')
+        
+        print(f"密码已保存到: {output_file}")
+        
+        # 显示前几个密码作为示例
+        if unique_passwords:
+            print("\n前10个密码示例:")
+            for i, pwd in enumerate(unique_passwords[:10]):
+                print(f"  {i+1}. {pwd}")
+                
+    except Exception as e:
+        print(f"处理文件时出错: {str(e)}")
+
+def main():
+    # 脚本配置
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    zip_file = os.path.join(script_dir, "password.zip")
+    output_file = os.path.join(script_dir, "1.txt")
+    
+    print("=== ZIP文件密码提取脚本 ===")
+    print(f"输入文件: {zip_file}")
+    print(f"输出文件: {output_file}")
+    print("=" * 40)
+    
+    # 检查输入文件是否存在
+    if not os.path.exists(zip_file):
+        print(f"错误: 找不到文件 {zip_file}")
+        return
+    
+    # 提取密码
+    extract_passwords_from_zip(zip_file, output_file)
+
+if __name__ == "__main__":
+    main()
+```
+拿字典爆破，得到一个`flag.zip`
+里面一个明文.exe，注意到所有exe明文开头都是`This program cannot be run in DOS mode`，已知明文爆破即可
+`moectf{Y0u_h4v3_cho5en_7h3_r1ght_z1pf1le!!uysdgfsad}`
+
 <a id="Reverse"></a>
 ## Reverse
 ### 逆向工程入门指北
